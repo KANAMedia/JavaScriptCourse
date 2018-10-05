@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+        <link type="text/css" rel="stylesheet" href="style.css">
+        
+        <title>Pig Game</title>
+    </head>
+
+    <body>
+        <div class="startscreen">
+            <h1 class="startscreen__h1">Wellcome to the Pig Game!</h1>
+            <div class="startscreen__form-wrapper">
+                <form class="startscreen__form">
+                    <div class="startscreen__input name-0">
+                        <label for="name-0">Name Player 1</label>
+                        <input type="text" name="name-0" id="name-0" required>
+                    </div>
+                    <div class="startscreen__input name-1">
+                        <label for="name-1">Name Player 2</label>
+                        <input type="text" name="name-1" id="name-1" required>
+                    </div>
+                    <div class="startscreen__input winningScore">
+                        <label for="winningScore">Score to Win</label>
+                        <input type="text" name="winningScore" id="winningScore" required>
+                    </div>
+                    <input type="submit" name="submit" id="submit" value="Let's Go !">
+                </form>
+            </div>
+        </div>
+        <div class="wrapper clearfix">
+            <div class="player-0-panel active">
+                <div class="player-name" id="name-0">Player 1</div>
+                <div class="player-score" id="score-0">43</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-0">11</div>
+                </div>
+            </div>
+            
+            <div class="player-1-panel">
+                <div class="player-name" id="name-1">Player 2</div>
+                <div class="player-score" id="score-1">72</div>
+                <div class="player-current-box">
+                    <div class="player-current-label">Current</div>
+                    <div class="player-current-score" id="current-1">0</div>
+                </div>
+            </div>
+            
+            <button class="btn-new"><i class="ion-ios-plus-outline"></i>New game</button>
+            <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
+            <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
+            
+            <img src="dice-5.png" alt="Dice" class="dice">
+        </div>
+        
+        <script src="app.js"></script>
+    </body>
+</html>
