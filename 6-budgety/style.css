@@ -27,6 +27,12 @@ body {
 .red { color: #FF5049 !important; }
 .red-focus:focus { border: 1px solid #FF5049 !important; }
 
+.add__btn--delete {
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+}
+
 /**********************************************
 *** TOP PART
 **********************************************/
