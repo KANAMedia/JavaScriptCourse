@@ -1,3 +1,4 @@
+import '../styles/main.scss';
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
@@ -223,3 +224,15 @@ window.addEventListener('load', () => {
     //Render the existing likes
     state.likes.likes.forEach(like => likesView.renderLike(like));
 });
+
+
+
+/***********************************
+ * // --- LIGHT CONTROLLER --- //
+ */
+
+const LightMode = () => {
+
+}
+
+// -- Handling light btn clicks -- //
