@@ -581,17 +581,9 @@ var controller = (function(budgetCtrl, UICtrl){
             });
             setupEventListerners();
             loadData();
-        },
-
-        peter: function() {
-            console.log('I\'m not dump :)')
         }
     };
 
 })(budgetCtrltroller, UIController);
 
 controller.init();
-
-const peter = {
-    name: 'Peter'
-};

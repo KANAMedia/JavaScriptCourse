@@ -2,7 +2,7 @@
  *  BUDGET CONTROLLER
  */
 
- var budgetController = (function(){
+var budgetController = (function(){
 
     var Expense = function(id, description, value) {
         this.id = id;
@@ -154,7 +154,7 @@
 
         testing: function() {
             console.log(data);
-        },
+        }
     };
 
 })();
@@ -471,7 +471,7 @@ var controller = (function(budgetCtrl, UICtrl){
                 percentage: -1
             });
             setupEventListerners();
-        },
+        }
     };
 
 })(budgetController, UIController);

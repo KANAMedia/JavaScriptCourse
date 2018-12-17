@@ -68,9 +68,9 @@ const getRelated = publisher => {
         }, 1500,  publisher);
     });
 };
-*/
-
+*/ 
 // consume Promises in ES6
+
 /*
 getIDs
 .then(IDs => {
@@ -87,11 +87,11 @@ getIDs
 .catch(error => {
     console.log(error);
 });
-
 */
 
+
 /*********************************
- * consume Promises in ES7
+ * consume Promises in ES8
  * Async / Await 
  
 
@@ -107,47 +107,11 @@ getIDs
  }
 
  getRecipesAW().then(result => console.log(`${result} is the best ever!`));
- */
  
+ */
 
 
 /********************************
  * AJAX Calls with Fetch and Promises
- 
-
-function getWeather(woeid) {
-    fetch(`https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/${woeid}/`)
-    .then(result => {
-        console.log(result);
-        return result.json();
-    })
-    .then(data => {
-    // console.log(data);
-    const today = data.consolidated_weather[0];
-    console.log(`Temperatures in ${data.title} stay between ${today.min_temp} and ${today.max_temp}.`)
-    })
-    .catch(error => console.log(error));
-}
-
-getWeather(2487956);
-getWeather(44418);
-*/
-
-/********************************
- * AJAX Calls with Fetch and Async/Await
  */
 
-async function getWeatherAW(woeid) {
-    try {
-        const result = await fetch(`https://api.codetabs.com/v1/proxy?quest=https://www.metaweather.com/api/location/${woeid}/`);
-        const data = await result.json();
-        const tomorrow = data.consolidated_weather[0];
-        console.log(`Temperatures tomorrow in ${data.title} stay between ${tomorrow.min_temp} and ${tomorrow.max_temp}.`);
-        return data;
-    } catch(error) {
-        console.log(error);
-    }
-}
-
-getWeatherAW(2487956);
-getWeatherAW(44418);

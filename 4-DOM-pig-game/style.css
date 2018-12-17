@@ -35,6 +35,7 @@ body {
     background-color: #fff;
     box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3);
     overflow: hidden;
+    z-index: -1;
 }
 
 .player-0-panel,
@@ -49,13 +50,14 @@ body {
 *** START SCREEN
 **********************************************/
 .startscreen {
-    position: relative;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(255, 255, 255, .98);   
-    animation: sipOut 1s cubic-bezier(.46,-0.35,.74,1.1) paused;
-    animation-fill-mode: forwards;
-    z-index: 100;
+    background-color: rgba(255, 255, 255, .98);
+    
+}
+
+.startscreen--active {
+    animation: sipOut 1s ease-out;
 }
 
 .startscreen__h1 {
@@ -89,7 +91,8 @@ body {
     text-align: center;
     color: inherit;
     width: 30vw;
-    height: 50px;    
+    height: 50px;
+    
 }
 
 .startscreen__input {
@@ -97,9 +100,9 @@ body {
     justify-items: center;
 }
 
-.submit {
+#submit {
     margin-top: 20px;
-    background-color: #2cc868;
+    background-color: #EB4D4D;
     border-radius:6px;
     color: #fff;
     font-family: inherit;
@@ -109,20 +112,11 @@ body {
     border:none;
     transition: all .2s;
 }
-
-.submit:hover,
-.submit:active {
+#submit:hover,
+#submit:active {
     box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.10);
     transform: translateY(-3px);
 }
-
-.submit__incomplete {
-    background-color: #EB4D4D;
-    color: #fff;
-    animation: nope 0.5s ease-out;
-}
-
-
 /**********************************************
 *** PLAYERS
 **********************************************/
@@ -217,18 +211,9 @@ i {
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
 
-.dice-0 {
+.dice {
     position: absolute;
-    left: 43%;
-    top: 178px;
-    transform: translateX(-50%);
-    height: 100px;
-    box-shadow: 0px 10px 60px rgba(0, 0, 0, 0.10);
-}
-
-.dice-1 {
-    position: absolute;
-    left: 57%;
+    left: 50%;
     top: 178px;
     transform: translateX(-50%);
     height: 100px;
@@ -249,25 +234,6 @@ i {
     }
 
     100% {
-        transform: translateY(-150vh);
-        opacity: 0;
-    }
-}
-
-@keyframes nope {
-    0% {
-        transform: translateX(0) translateY(-3px);
-    }
-    25% {
-        transform: translateX(10px) translateY(-3px);
-    }
-    50% {
-        transform: translateX(-10px) translateY(-3px);
-    }
-    75% {
-        transform: translateX(6px) translateY(-3px);
-    }
-    100% {
-        transform: translateX(0) translateY(-3px);
+        transform: translateY(100%);
     }
 }

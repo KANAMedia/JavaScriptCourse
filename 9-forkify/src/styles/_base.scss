@@ -1,0 +1,39 @@
+// COLOR VARIABLES
+$color-primary: #2b2516;
+$color-primary-dark: #1a0201;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483A;
+$color-grey-dark-2: #6D5D4B;
+
+:root {
+    // COLOR VARIABLES LIGHT
+    --color-primary: #FBDB89;
+    --color-primary-notShiny: rgba(251, 219, 137, 0.7);
+    --color-primary-dark: #F48982;
+
+    --color-secondary: #101d2c;
+
+    --color-grey-light-1: #f9f7f6;
+    --color-grey-light-2: #aaa;
+
+    --color-grey-dark-1: #54483A;
+    --color-grey-dark-2: #6D5D4B;
+}
+
+
+:root {
+    // COLOR VARIABLES DARK
+    --color-primary: #2b2516;
+    --color-primary-dark: #1a0201;
+
+    --color-secondary: #101d2c;
+
+    --color-grey-1: #272523;
+    --color-grey-2: #1b1b1b;
+    --color-grey-3: #161616;
+}

@@ -11,20 +11,25 @@
 
     <body>
         <div class="startscreen">
-            <h1 class="startscreen__h1">Welcome to the Pig Game!</h1>
+            <h1 class="startscreen__h1">Wellcome to the Pig Game!</h1>
             <div class="startscreen__form-wrapper">
                 <form class="startscreen__form">
-                    <label for="player0" >Name Player 1</label>
-                    <input type="text" id="player0" required>
-                    <label for="player1" >Name Player 2</label>
-                    <input type="text" id="player1" required>
-                    <label for="winScore" >Score to Win</label>
-                    <input type="text" id="winScore" required>
-                    <input type="button" id="submit" class="submit" value="PLAY !" onclick="submitStartScreenData()">
+                    <div class="startscreen__input name-0">
+                        <label for="name-0">Name Player 1</label>
+                        <input type="text" name="name-0" id="name-0" required>
+                    </div>
+                    <div class="startscreen__input name-1">
+                        <label for="name-1">Name Player 2</label>
+                        <input type="text" name="name-1" id="name-1" required>
+                    </div>
+                    <div class="startscreen__input winningScore">
+                        <label for="winningScore">Score to Win</label>
+                        <input type="text" name="winningScore" id="winningScore" required>
+                    </div>
+                    <input type="submit" name="submit" id="submit" value="Let's Go !">
                 </form>
             </div>
         </div>
-
         <div class="wrapper clearfix">
             <div class="player-0-panel active">
                 <div class="player-name" id="name-0">Player 1</div>
@@ -48,8 +53,7 @@
             <button class="btn-roll"><i class="ion-ios-loop"></i>Roll dice</button>
             <button class="btn-hold"><i class="ion-ios-download-outline"></i>Hold</button>
             
-            <img src="dice-5.png" alt="Dice-0" class="dice-0">
-            <img src="dice-5.png" alt="Dice-1" class="dice-1">
+            <img src="dice-5.png" alt="Dice" class="dice">
         </div>
         
         <script src="app.js"></script>

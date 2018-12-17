@@ -9,10 +9,10 @@ GAME RULES:
 
 */
 
-var scores, roundScore, activePlayer, gamePlaying, scoreToWin;
-
+var scores, roundScore, previousDice, activePlayer, gamePlaying;
 
 init();
+
 
 function init() {
     scores = [0,0];
@@ -21,8 +21,7 @@ function init() {
     previousDice = 0;
     gamePlaying = true;
 
-    document.querySelector('.dice-0').style.display = 'none';
-    document.querySelector('.dice-1').style.display = 'none';
+    document.querySelector('.dice').style.display = 'none';
 
     // getElementById --> faster - resource saving
     document.getElementById('score-0').textContent = '0';
@@ -42,6 +41,7 @@ function nextPlayer() {
     // Next player
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
+    previousDice = 0;
 
     document.getElementById('current-0').textContent = '0';
     document.getElementById('current-1').textContent = '0';
@@ -49,75 +49,48 @@ function nextPlayer() {
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
 
-    document.querySelector('.dice-0').style.display = 'none';
-    document.querySelector('.dice-1').style.display = 'none';
+    document.querySelector('.dice').style.display = 'none';
 }
 
+document.querySelector('.startscreen__form').addEventListener('submit', function(){
 
-function submitStartScreenData() {
-
-    // get all the Information ( ? creat an Object ?)
-    var namePlayer0 = document.getElementById('player0').value;
-    var namePlayer1 = document.getElementById('player1').value;
-    scoreToWin = document.getElementById('winScore').value;
-
-    // If the form is filled
-    if(namePlayer0 && namePlayer1 && scoreToWin){
-        
-        // Manipulate the DOM with the Playernames
-        document.getElementById('name-0').textContent = namePlayer0;
-        document.getElementById('name-1').textContent = namePlayer1;
-
-        // animate the startscreen out
-        document.querySelector('.startscreen').style.animationPlayState = 'running';
-    }else { // show that something went rong
-        document.getElementById('submit').classList.toggle('submit__incomplete');
-        document.getElementById('submit').value = 'pls fill all the fealds and click again :)';
-    }
-}
+    console.log('it works!');
+    document.querySelector('.startscreen').classList.toggle('.startscreen--active');
+});
 
 document.querySelector('.btn-roll').addEventListener('click', function() { // <-- Anonymous function
     if(gamePlaying){
-         
-        function dice() {
-            // Random number
-            var dice = Math.floor(Math.random() * 6) + 1;
-            return dice;
+        var is2nd6 = false;
+        // 1. Random number
+        var dice = Math.floor(Math.random() * 6) + 1;
+       
+        // save dice if 6 else delete previous dice
+        if(dice === 6 && previousDice === 0){
+            previousDice = dice;
+        } else if(dice <= 5){
+            previousDice = 0;
+        } else {
+            is2nd6 = true;            
         }
 
-        function displayDice(dice, diceClass) {
-            var diceDOM = document.querySelector(diceClass);
-            diceDOM.style.display = 'block';
-            diceDOM.src = 'dice-' + dice + '.png';
-        }
+        // 2. Display the result
+        var diceDOM = document.querySelector('.dice');
+        var currentDOM = document.querySelector('#current-' + activePlayer)
+        diceDOM.style.display = 'block';
+        diceDOM.src = 'dice-' + dice + '.png';
 
-        function updateRoundScore(dice1,dice2) {
-            var currentDOM = document.querySelector('#current-' + activePlayer);
-            if(dice1 === 1 || dice2 === 1) var is1 = true;
-            if(dice1 === 6 && dice2 === 6) var is2end6 = true;
-
-            if(is1){ // delete Round Score if 1
-                currentDOM.textContent = 0; 
-                nextPlayer();
-            } else if(is2end6){ // delete Global Score if second 6
-                scores[activePlayer] = 0;
-                document.querySelector('#score-' + activePlayer).textContent = '0';
-                nextPlayer();
-            } else { // else add to current Round Score
-                roundScore += (dice1 + dice2); // same as --> roundScore = roundScore + dice1 + dice2;
-                currentDOM.textContent = roundScore; 
-            }
+        // 3. Update the round score IF the rolled number was NOT a 1 AND its not the 2nd 6 in a row
+        if (dice !== 1 && is2nd6 === false) {
+            // Add score
+            roundScore += dice; // same as --> roundScore = roundScore + dice;
+            currentDOM.textContent = roundScore; 
+        }else if(is2nd6){
+            scores[activePlayer] = 0;
+            document.querySelector('#score-' + activePlayer).textContent = '0';
+            nextPlayer();
+        } else {
+            nextPlayer();
         }
-        
-        console.log(`${document.getElementById(`name-${activePlayer}`).textContent}`);
-        dice1 = dice();
-        console.log(`Dice1: ${dice1}`);
-        dice2 = dice();
-        console.log(`Dice2: ${dice2}`);
-        displayDice(dice1,'.dice-0');
-        displayDice(dice2,'.dice-1');
-        updateRoundScore(dice1,dice2);
-        console.log('--------------');
     }
 });
 
@@ -132,10 +105,9 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
         scoresDOM.textContent = scores[activePlayer];
 
         // Check if player won the game
-        if (scores[activePlayer] >= scoreToWin) {
+        if (scores[activePlayer] >= 100) {
             scoresDOM.textContent = 'WINNER!'
-            document.querySelector('.dice-0').style.display = 'none';
-            document.querySelector('.dice-1').style.display = 'none';
+            document.querySelector('.dice').style.display = 'none';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
             document.querySelector('.player-' + activePlayer + '-panel').classList.remove('active');
             gamePlaying = false;
@@ -146,3 +118,9 @@ document.querySelector('.btn-hold').addEventListener('click', function() {
 });
 
 document.querySelector('.btn-new').addEventListener('click', init);
+
+
+
+
+
+
