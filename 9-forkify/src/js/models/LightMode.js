@@ -11,7 +11,9 @@ export default class Theme{
         grey3,
         mainText,
         secondaryText,
-        btn
+        btn,
+        currentMode,
+        nextMode
         ) {
         this.primary = primary;
         this.primaryNotShiny = primaryNotShiny;
@@ -25,5 +27,24 @@ export default class Theme{
         this.mainText = mainText;
         this.secondaryText = secondaryText;
         this.btn = btn;
+        this.currentMode = currentMode;
+        this.nextMode = nextMode;
+    }
+
+    persistData(){
+        localStorage.setItem('themeMode', this.currentMode);
+    }
+
+    readStorage(){
+        const storage = localStorage.getItem('themeMode');
+        
+        // restore current Mode from localStorage and convert it to nextMode
+        // macht noch nicht so viel Sinn aber das if statement im View basiert auf dem next Mode
+        // TODO: was logischeres einfallen lassen
+        if(storage === 'light'){
+           this.nextMode = 'light';
+        } else {
+            this.nextMode = 'dark' ;
+        }
     }
 }

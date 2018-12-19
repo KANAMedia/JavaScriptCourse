@@ -1,23 +1,19 @@
-import { elements, elementStrings } from './base';
+import { elements } from './base';
 
-let iconToggled = false;
 
-export const getLightMode = () => {
-    return iconToggled;
+export const getLightMode = theme => {
+    return theme.mode;
 }
 
-export const changeIcon = () => {
-    console.log('Im here :)');
-    if(!iconToggled) {
+export const changeIcon = mode => {
+    if(mode === 'dark') {
         elements.lightModeBtn.classList.remove('lightMode__btn--sun');
         elements.lightModeBtn.classList.add('lightMode__btn--moon');
         elements.lightModeIcon.setAttribute('href', 'img/icons.svg#icon-moon');
-        iconToggled = true;
-    } else {
+    } else if(mode === 'light'){
         elements.lightModeBtn.classList.remove('lightMode__btn--moon');
         elements.lightModeBtn.classList.add('lightMode__btn--sun');
         elements.lightModeIcon.setAttribute('href', 'img/icons.svg#icon-sun');
-        iconToggled = false;
     }
 }
 

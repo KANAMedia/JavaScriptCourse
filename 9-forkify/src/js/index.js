@@ -17,8 +17,8 @@ import Theme from './models/LightMode';
 /**********************************
     TODO:
     -   Shopping List Local Storage
-    -   Theme state Local Storage
-    -   Dark / Light Theme
+    -   Theme state Local Storage ✅
+    -   Dark / Light Theme ✅
     -   Week food plan
     -   Last fisited recipe
  */
@@ -247,11 +247,9 @@ window.addEventListener('load', () => {
 
  const controlLightMode = () => {
 
-    // Change Icon
-    lightModeView.changeIcon();
-
-    if(lightModeView.getLightMode()){
-        // create light Themes
+    // Create default light Theme if there is no Theme
+    if(!state.theme) state.theme = new Theme()
+    if(state.theme.nextMode === 'light') { 
         state.theme = new Theme(
             '#FBDB89',
             '#fff',
@@ -264,10 +262,11 @@ window.addEventListener('load', () => {
             '#F2EFEE',
             '#655A56',
             '#968B87',
-            '#F59A83'
-        )
-    } else if (!lightModeView.getLightMode()){
-        // create dark Themes
+            '#F59A83',
+            'light',
+            'dark'
+            )
+    } else if(state.theme.nextMode === 'dark') {
         state.theme = new Theme(
             '#2b2516',
             'rgba(251, 219, 137, 0.7)',
@@ -280,17 +279,36 @@ window.addEventListener('load', () => {
             '#161616',
             '#dac6bf',
             '#b1a49f',
-            '#F59A83'
+            '#F59A83',
+            'dark',
+            'light'
         )
     }
 
-    // Change Light Mode
+    // Change Icon on the UI
+    lightModeView.changeIcon(state.theme.nextMode);
+
+    // Change Theme on the UI
     lightModeView.changeLightMode(state.theme);
- }
+}
+    
+
 
 // -- Handling light btn clicks -- //
 elements.lightMode.addEventListener('click', e => {
     if(e.target.closest('.lightMode')){
-        controlLightMode();        
+        controlLightMode();  
+        state.theme.persistData();
     }
+});
+
+// Restore light mode on page load
+window.addEventListener('load', () => { 
+    
+    state.theme = new Theme();
+
+    // Restore light mode
+    state.theme.readStorage();
+    
+    controlLightMode();   
 });
