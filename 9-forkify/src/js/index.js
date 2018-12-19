@@ -1,14 +1,27 @@
 import '../styles/main.scss';
+import 'simplebar';
+import 'simplebar/dist/simplebar.css';
 import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
 import Likes from './models/Likes';
+import LightMode from './models/LightMode';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
 import * as likesView from './views/likesView';
+import * as lightModeView from './views/lightModeView';
 import { elements, renderLoader, clearLoader, elementStrings } from './views/base';
+import Theme from './models/LightMode';
 
+/**********************************
+    TODO:
+    -   Shopping List Local Storage
+    -   Theme state Local Storage
+    -   Dark / Light Theme
+    -   Week food plan
+    -   Last fisited recipe
+ */
 
 /* // -- Global state of the app -- //
  * - Search object
@@ -17,6 +30,7 @@ import { elements, renderLoader, clearLoader, elementStrings } from './views/bas
  * - Liked recipes
  */
 const state = {};
+window.state = state;
 
 /************************************
  * // --- SEARCH CONTROLLER --- //
@@ -231,8 +245,52 @@ window.addEventListener('load', () => {
  * // --- LIGHT CONTROLLER --- //
  */
 
-const LightMode = () => {
+ const controlLightMode = () => {
 
-}
+    // Change Icon
+    lightModeView.changeIcon();
+
+    if(lightModeView.getLightMode()){
+        // create light Themes
+        state.theme = new Theme(
+            '#FBDB89',
+            '#fff',
+            '#F48982',
+            '#FBDB89',
+            '#F48982',
+            '#fff',
+            '#fff',
+            '#F9F5F3',
+            '#F2EFEE',
+            '#655A56',
+            '#968B87',
+            '#F59A83'
+        )
+    } else if (!lightModeView.getLightMode()){
+        // create dark Themes
+        state.theme = new Theme(
+            '#2b2516',
+            'rgba(251, 219, 137, 0.7)',
+            '#1a0201',
+            '#867753',
+            '#75211d',
+            '#f9f7f6',
+            '#272523',
+            '#1b1b1b',
+            '#161616',
+            '#dac6bf',
+            '#b1a49f',
+            '#F59A83'
+        )
+    }
+
+    // Change Light Mode
+    lightModeView.changeLightMode(state.theme);
+ }
 
 // -- Handling light btn clicks -- //
+elements.lightMode.addEventListener('click', e => {
+    if(e.target.closest('.lightMode')){
+        controlLightMode();        
+    }
+});

@@ -7,7 +7,11 @@ export const elements = {
     recipe: document.querySelector('.recipe'),
     shopping: document.querySelector('.shopping__list'),
     likesMenu: document.querySelector('.likes__field'),
-    likesList: document.querySelector('.likes__list')
+    likesList: document.querySelector('.likes__list'),
+    lightMode: document.querySelector('.lightMode'),
+    lightModeBtn: document.querySelector('.lightMode__btn'),
+    lightModeIcon: document.querySelector('.lightMode__btn svg use'),
+    root: document.querySelector(':root')
 }
 
 // für nicht constant vorhandene Elemte
