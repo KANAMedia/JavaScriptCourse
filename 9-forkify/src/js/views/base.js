@@ -19,6 +19,7 @@ export const elementStrings = {
     loader: 'loader'
 }
 
+// Loading animation
 export const renderLoader = parent => {
     const loader = `
     <div class="${elementStrings.loader}">

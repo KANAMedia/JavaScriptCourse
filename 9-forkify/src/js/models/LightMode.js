@@ -30,21 +30,4 @@ export default class Theme{
         this.currentMode = currentMode;
         this.nextMode = nextMode;
     }
-
-    persistData(){
-        localStorage.setItem('themeMode', this.currentMode);
-    }
-
-    readStorage(){
-        const storage = localStorage.getItem('themeMode');
-        
-        // restore current Mode from localStorage and convert it to nextMode
-        // macht noch nicht so viel Sinn aber das if statement im View basiert auf dem next Mode
-        // TODO: was logischeres einfallen lassen
-        if(storage === 'light'){
-           this.nextMode = 'light';
-        } else {
-            this.nextMode = 'dark' ;
-        }
-    }
 }

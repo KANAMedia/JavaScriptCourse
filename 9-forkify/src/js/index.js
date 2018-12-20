@@ -5,20 +5,23 @@ import Search from './models/Search';
 import Recipe from './models/Recipe';
 import List from './models/List';
 import Likes from './models/Likes';
-import LightMode from './models/LightMode';
+import Theme from './models/LightMode';
+import LSC from './models/LSC';
+import { isStored } from './models/LSC';
 import * as searchView from './views/searchView';
 import * as recipeView from './views/recipeView';
 import * as listView from './views/listView';
 import * as likesView from './views/likesView';
 import * as lightModeView from './views/lightModeView';
 import { elements, renderLoader, clearLoader, elementStrings } from './views/base';
-import Theme from './models/LightMode';
 
 /**********************************
     TODO:
-    -   Shopping List Local Storage
+    -   Shopping List Local Storage ✅
     -   Theme state Local Storage ✅
     -   Dark / Light Theme ✅
+    -   Show shopping List btn only wehen something is in there
+    -   Delete all btn in Shopping List
     -   Week food plan
     -   Last fisited recipe
  */
@@ -186,6 +189,25 @@ elements.shopping.addEventListener('click', e => {
     }
 });
 
+// --- Restore shopping list at side load --- //
+window.addEventListener('load', () => {
+    
+    if(isStored('list')){ 
+
+        state.list = new List();    
+        
+        // restore shopping list into state
+        state.list.items = LSC('list', false);
+
+        // render shopping list items on UI
+        state.list.items.forEach(e => {
+        listView.renderItem(e);
+    });
+
+    }
+
+});
+
 /***********************************
  * // --- LIKE CONTROLLER --- //
  */
@@ -230,7 +252,7 @@ window.addEventListener('load', () => {
     state.likes = new Likes();
 
     // Restore likes
-    state.likes.readStorage()
+    if(isStored('likes')) state.likes.likes = LSC('likes', false);
 
     // Toggle like menu button
     likesView.toggleLikeMenu(state.likes.getNumLikes());
@@ -298,7 +320,7 @@ window.addEventListener('load', () => {
 elements.lightMode.addEventListener('click', e => {
     if(e.target.closest('.lightMode')){
         controlLightMode();  
-        state.theme.persistData();
+        LSC('LightMode', true, state.theme.currentMode);
     }
 });
 
@@ -308,7 +330,8 @@ window.addEventListener('load', () => {
     state.theme = new Theme();
 
     // Restore light mode
-    state.theme.readStorage();
+    const restoredData = LSC('LightMode', false);
+    state.theme.nextMode = restoredData;
     
     controlLightMode();   
 });
