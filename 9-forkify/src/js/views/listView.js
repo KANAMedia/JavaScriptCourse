@@ -1,5 +1,9 @@
 import { elements } from './base';
 
+export const toggleListMenu = numItems => {
+    elements.shoppingMenu.style.visibility = numItems > 0 ? 'visible' : 'hidden';
+};
+
 export const renderItem = item => {
     const markup = `
         <li class="shopping__item" data-itemid=${item.id}>

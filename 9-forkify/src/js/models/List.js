@@ -30,4 +30,8 @@ export default class List {
         this.items.find(e => e.id === id).count = newCount;
         LSC('list', true, JSON.stringify(this.items));
     }
+
+    getNumItems(){
+        return this.items.length;
+    }
 }

@@ -20,7 +20,7 @@ import { elements, renderLoader, clearLoader, elementStrings } from './views/bas
     -   Shopping List Local Storage ✅
     -   Theme state Local Storage ✅
     -   Dark / Light Theme ✅
-    -   Show shopping List btn only wehen something is in there
+    -   Show shopping List btn only wehen something is in there ✅
     -   Delete all btn in Shopping List
     -   Week food plan
     -   Last fisited recipe
@@ -168,6 +168,9 @@ const controlList = () => {
         const item = state.list.addItem(e.count, e.unit, e.ingredient);
         listView.renderItem(item);
     });
+    
+    // toggle shopping list icon
+    listView.toggleListMenu(state.list.getNumItems());
 };
 
 // --- Handle delete and update list item events --- //
@@ -182,6 +185,8 @@ elements.shopping.addEventListener('click', e => {
         // Delte from UI
         listView.deleteItem(id);
 
+        // toggle shopping list icon
+        listView.toggleListMenu(state.list.getNumItems());
     // Handling the count update
     } else if( e.target.matches('.shopping__count-value')) {
         const val = parseFloat( e.target.value, 10);
@@ -192,19 +197,21 @@ elements.shopping.addEventListener('click', e => {
 // --- Restore shopping list at side load --- //
 window.addEventListener('load', () => {
     
+    state.list = new List();
+    
     if(isStored('list')){ 
-
-        state.list = new List();    
         
         // restore shopping list into state
         state.list.items = LSC('list', false);
 
         // render shopping list items on UI
         state.list.items.forEach(e => {
-        listView.renderItem(e);
-    });
-
+            listView.renderItem(e);
+        });
     }
+    
+    // toggle shopping list icon
+    listView.toggleListMenu(state.list.getNumItems());
 
 });
 
