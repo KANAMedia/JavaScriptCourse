@@ -26,3 +26,11 @@ export const deleteItem = id => {
     const item = document.querySelector(`[data-itemid="${id}"]`);
     if(item) item.parentElement.removeChild(item);
 };
+
+export const deleteAllItems = () => {
+    let items = document.querySelectorAll('.shopping__item');
+    items = Array.from(items);
+    items.forEach(e => {
+        e.remove();
+    });
+}

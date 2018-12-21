@@ -26,6 +26,11 @@ export default class List {
         LSC('list', true, JSON.stringify(this.items));
     }
 
+    deleteAllItems(){
+        this.items = [];
+        LSC('list', true, JSON.stringify(this.items));
+    }
+
     updateCount(id, newCount){
         this.items.find(e => e.id === id).count = newCount;
         LSC('list', true, JSON.stringify(this.items));

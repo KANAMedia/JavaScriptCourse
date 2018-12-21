@@ -7,6 +7,7 @@ export const elements = {
     recipe: document.querySelector('.recipe'),
     shoppingMenu: document.querySelector('.shopping__field'),
     shopping: document.querySelector('.shopping__list'),
+    shoppingDltAllBtn: document.querySelector('.shopping__dltAllBtn'),
     likesMenu: document.querySelector('.likes__field'),
     likesList: document.querySelector('.likes__list'),
     lightMode: document.querySelector('.lightMode'),
@@ -17,7 +18,7 @@ export const elements = {
 
 // für nicht constant vorhandene Elemte
 export const elementStrings = {
-    loader: 'loader'
+    loader: 'loader',
 }
 
 // Loading animation

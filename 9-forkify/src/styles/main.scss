@@ -463,7 +463,13 @@ body {
 .shopping {
   position: relative;
   display: flex;
-  flex-direction: column;}
+  flex-direction: column;
+
+  &__dltAllBtn {
+    align-self: center;
+    margin-top: 2rem;
+  }
+}
   .shopping__field{
     display: flex;
     align-items: center;
@@ -482,6 +488,8 @@ body {
 
   .shopping__panel {
     position: absolute;
+    display: flex;
+    flex-direction: column;
     right: 0;
     top: 10rem;
     z-index: 10;
@@ -523,6 +531,7 @@ body {
     justify-content: space-between; }
     .shopping__count input {
       color: inherit;
+      background-color: var(--color-grey-2);
       font-family: inherit;
       font-size: 1.2rem;
       text-align: center;

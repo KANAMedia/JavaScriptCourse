@@ -24,6 +24,9 @@ import { elements, renderLoader, clearLoader, elementStrings } from './views/bas
     -   Delete all btn in Shopping List
     -   Week food plan
     -   Last fisited recipe
+
+    BUGS:
+    -   LightMode default setzten (ohne Eintag im local storage läd kein theme)
  */
 
 /* // -- Global state of the app -- //
@@ -191,6 +194,20 @@ elements.shopping.addEventListener('click', e => {
     } else if( e.target.matches('.shopping__count-value')) {
         const val = parseFloat( e.target.value, 10);
         state.list.updateCount(id, val);
+    }
+});
+
+// --- Handle delete all btn --- //
+elements.shoppingDltAllBtn.addEventListener('click', e => {
+    if(e.target.matches(`.shopping__dltAllBtn, .shopping__dltAllBtn *`)){
+        // Delte all list items from state
+        state.list.deleteAllItems();
+
+        // Update UI
+        listView.deleteAllItems();
+
+        // toggle shopping list icon
+        listView.toggleListMenu(state.list.getNumItems());
     }
 });
 
