@@ -21,9 +21,11 @@ import { elements, renderLoader, clearLoader, elementStrings } from './views/bas
     -   Theme state Local Storage ✅
     -   Dark / Light Theme ✅
     -   Show shopping List btn only wehen something is in there ✅
-    -   Delete all btn in Shopping List
+    -   Delete all btn in Shopping List ✅
+    -   On click shopping list icon set list to right column
     -   Week food plan
     -   Last fisited recipe
+    -   Last search
 
     BUGS:
     -   LightMode default setzten (ohne Eintag im local storage läd kein theme)
